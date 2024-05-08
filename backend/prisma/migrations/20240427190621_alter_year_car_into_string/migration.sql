@@ -1,0 +1,8 @@
+-- AlterTable
+ALTER TABLE "Demand" ALTER COLUMN "yearCar" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "History" ALTER COLUMN "yearCar" SET DATA TYPE TEXT;
+
+-- AlterTable
+ALTER TABLE "Product" ALTER COLUMN "yearCar" SET DATA TYPE TEXT;

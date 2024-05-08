@@ -1,0 +1,59 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearch"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id        String    @id @default(uuid())
+  name      String
+  price     Int
+  yearCar   String
+  brand     Brand     @relation(fields: [brandName], references: [name], onDelete: Cascade)
+  details   String
+  imageURL  String
+  createdAt DateTime  @default(now())
+  brandName String
+  Demand    Demand[]
+  History   History[]
+}
+
+model Brand {
+  id      String    @id @default(uuid())
+  name    String    @unique
+  Product Product[]
+  Demand  Demand[]
+  History History[]
+}
+
+model Demand {
+  id            String   @id @default(uuid())
+  name          String
+  yearCar       String
+  brand         Brand    @relation(fields: [brandName], references: [name], onDelete: Cascade)
+  price         Int
+  offer         Int
+  brandName     String
+  paymentMethod String
+  productId     String
+  product       Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt     DateTime @default(now())
+}
+
+model History {
+  id          String   @id @default(uuid())
+  name        String
+  price       Int
+  offer       Int
+  yearCar     String
+  brandName   String
+  productId   String
+  hasAccepted Boolean
+  brand       Brand    @relation(fields: [brandName], references: [name], onDelete: Cascade)
+  product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+}
