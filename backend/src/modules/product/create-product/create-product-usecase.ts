@@ -1,15 +1,9 @@
-<<<<<<< HEAD
 import { Product } from "@prisma/client";
 import { ProductRepository } from "../../../repositories/product-repository";
 import { BrandRepository } from "../../../repositories/brand-repository";
 import { AppError } from "../../../errors/AppError/AppError";
 
 interface CreateProductRequest {
-=======
-import { prisma } from "../../../prisma/client";
-
-interface ProductType {
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
   name: string;
   price: number;
   yearCar: string;
@@ -18,7 +12,6 @@ interface ProductType {
   brand: string;
 }
 
-<<<<<<< HEAD
 type CreateProductResponse = {
   product: Product;
 };
@@ -29,9 +22,6 @@ export class CreateProductUseCase {
     private brandRepository: BrandRepository
   ) {}
 
-=======
-export class CreateProductUseCase {
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
   async execute({
     name,
     price,
@@ -39,7 +29,6 @@ export class CreateProductUseCase {
     details,
     imageURL,
     brand,
-<<<<<<< HEAD
   }: CreateProductRequest): Promise<CreateProductResponse> {
     const verifyIfBrandExits = await this.brandRepository.findByName(brand);
 
@@ -57,20 +46,5 @@ export class CreateProductUseCase {
     });
 
     return { product };
-=======
-  }: ProductType) {
-    const product = await prisma.product.create({
-      data: {
-        name,
-        price,
-        yearCar,
-        details,
-        brandName: brand,
-        imageURL,
-      },
-    });
-
-    return product;
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
   }
 }
