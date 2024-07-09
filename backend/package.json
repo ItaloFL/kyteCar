@@ -4,26 +4,40 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
+<<<<<<< HEAD
     "dev": "tsnd src/server.ts",
     "test": "vitest run"
+=======
+    "dev": "tsnd src/server.ts"
+>>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
   },
   "dependencies": {
     "@prisma/client": "^5.12.1",
     "cors": "^2.8.5",
     "date-fns": "^3.6.0",
+<<<<<<< HEAD
     "dayjs": "^1.11.11",
+=======
+>>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
     "express": "^4.19.2",
     "express-async-errors": "^3.1.1",
     "multer": "^1.4.5-lts.1",
     "ts-node-dev": "^2.0.0",
+<<<<<<< HEAD
     "tsx": "^4.7.2",
     "vitest": "^1.6.0"
+=======
+    "tsx": "^4.7.2"
+>>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
   },
   "devDependencies": {
     "@types/cors": "^2.8.17",
     "@types/express": "^4.17.21",
     "@types/multer": "^1.4.11",
+<<<<<<< HEAD
     "@types/node": "^20.14.9",
+=======
+>>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
     "prisma": "^5.12.1",
     "typescript": "^5.4.5"
   }
