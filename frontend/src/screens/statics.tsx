@@ -51,6 +51,7 @@ export function Statics() {
     if (date?.to && date.from) {
       const initialDate = converterData(date?.from);
       const finalDate = converterData(date?.to);
+      console.log(initialDate, finalDate)
       try {
         const response = await api.get<PeriodDataType[]>(
           `statics?initialDate=${initialDate}&finalDate=${finalDate}`
