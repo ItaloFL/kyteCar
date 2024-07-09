@@ -30,19 +30,11 @@ const createHistoryController = new CreateHistoryController();
 const createDemandController = new CreateDemandController();
 const listDemandController = new ListDemandsController();
 const listHistoryController = new ListHistoryController();
-<<<<<<< HEAD
 const findProductController = new FindProductController();
 const findDemandByIdController = new FindDemandByIdController();
 const getStaticsRangeDateController = new GetStaticsRangeDateController();
 const getMonthOrdersAmountController = new GetMonthOrdersAmountController();
 const getTodayOrdersQuantityController = new GetTodayOrdersQuantityController();
-=======
-const findProductController = new FindProductController()
-const findDemandByIdController = new FindDemandByIdController()
-const getStaticsRangeDateController = new GetStaticsRangeDateController()
-const getMonthOrdersAmountController = new GetMonthOrdersAmountController()
-const getTodayOrdersQuantityController = new GetTodayOrdersQuantityController()
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
 
 //Product ROUTES
 kyteRoutes.post(
@@ -52,11 +44,7 @@ kyteRoutes.post(
 );
 kyteRoutes.get("/products/:id", findProductByIdController.handle);
 kyteRoutes.get("/products", listProductsController.handle);
-<<<<<<< HEAD
 kyteRoutes.get("/product", findProductController.handle);
-=======
-kyteRoutes.get('/product', findProductController.handle)
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
 
 //Brand ROUTES
 kyteRoutes.post("/brand", createBrandController.handle);
@@ -65,23 +53,13 @@ kyteRoutes.get("/brand", listAllBrandController.handle);
 //demand ROUTES
 kyteRoutes.post("/demand", createDemandController.handle);
 kyteRoutes.get("/demand", listDemandController.handle);
-<<<<<<< HEAD
 kyteRoutes.get("/demand/:id", findDemandByIdController.handle);
-=======
-kyteRoutes.get('/demand/:id', findDemandByIdController.handle)
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
 
 //history ROUTES
 kyteRoutes.post("/history", createHistoryController.handle);
 kyteRoutes.get("/history", listHistoryController.handle);
 
 //statics ROUTES
-<<<<<<< HEAD
 kyteRoutes.get("/statics", getStaticsRangeDateController.handle);
 kyteRoutes.get("/statics/monthamount", getMonthOrdersAmountController.handle);
 kyteRoutes.get("/statics/todayorders", getTodayOrdersQuantityController.handle);
-=======
-kyteRoutes.get('/statics', getStaticsRangeDateController.handle)
-kyteRoutes.get('/statics/monthamount', getMonthOrdersAmountController.handle)
-kyteRoutes.get('/statics/todayorders', getTodayOrdersQuantityController.handle)
->>>>>>> 091c3e7d68f50645d7435d047f52d4c3b8af1dad
