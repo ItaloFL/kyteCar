@@ -35,7 +35,7 @@ export class CreateProductUseCase {
     if (!verifyIfBrandExits) {
       throw new AppError("Brand does not exist");
     }
-
+    
     const product = await this.productRepository.create({
       name,
       price,

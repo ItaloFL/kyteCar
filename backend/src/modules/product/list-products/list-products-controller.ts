@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-import { ListProductsUseCase } from "./list-products-usecase";
 import { MakeListProductsUseCase } from "../../../factories/make-list-products-use-case";
 
 export class ListProductsController {

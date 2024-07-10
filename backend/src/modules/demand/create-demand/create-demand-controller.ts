@@ -4,7 +4,7 @@ import { MakeCreateDemandUseCase } from "../../../factories/make-create-demand-u
 
 export class CreateDemandController {
   async handle(request: Request, response: Response) {
-    const { name, price, yearCar, brandName, offer, paymentMethod, productId } =
+    const { name, price, yearCar, brand, offer, paymentMethod, productId } =
       request.body;
 
     const priceNumber = convertToNumber(price);
@@ -17,7 +17,7 @@ export class CreateDemandController {
       price: priceNumber,
       offer: offerNumber,
       yearCar,
-      brandName,
+      brandName: brand,
       paymentMethod,
       productId,
     });

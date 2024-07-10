@@ -5,7 +5,7 @@ import { MakeCreateHistoryUseCase } from "../../../factories/make-create-history
 
 export class CreateHistoryController {
   async handle(request: Request, response: Response) {
-    const { name, price, yearCar, brandName, hasAccepted, offer, productId } =
+    const { name, price, yearCar, brand, hasAccepted, offer, productId } =
       request.body;
 
     const priceNumber = convertToNumber(price);
@@ -17,7 +17,7 @@ export class CreateHistoryController {
       name,
       price: priceNumber,
       yearCar,
-      brandName,
+      brandName: brand,
       hasAccepted,
       offer: offerNumber,
       productId,

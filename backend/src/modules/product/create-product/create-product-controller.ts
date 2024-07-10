@@ -1,7 +1,8 @@
 import { Request, Response } from "express";
-import { CreateProductUseCase } from "./create-product-usecase";
 import { convertToNumber } from "../../../utils/convertToNumber";
 import { MakeCreateProductUseCase } from "../../../factories/make-create-product-use-case";
+import 'dotenv/config'
+
 
 export class CreateProductController {
   async handle(request: Request, response: Response) {

@@ -32,6 +32,14 @@ export class PrismaDemandRepository implements DemandRepository {
       where: {
         id,
       },
+      include: {
+        product: {
+          select: {
+            id: true,
+            imageURL: true,
+          },
+        },
+      },
     });
 
     return demand;
@@ -41,6 +49,9 @@ export class PrismaDemandRepository implements DemandRepository {
     const demands = await prisma.demand.findMany({
       take: 10,
       skip: (pageNumber - 1) * pageNumber * 10,
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return demands;

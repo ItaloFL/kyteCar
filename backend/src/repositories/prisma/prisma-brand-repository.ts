@@ -4,6 +4,7 @@ import { prisma } from "../../prisma/client";
 
 export class PrismaBrandRepository implements BrandRepository {
   async create({ name }: Prisma.BrandCreateInput) {
+   
     const brand = await prisma.brand.create({
       data: {
         name,
