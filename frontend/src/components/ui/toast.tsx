@@ -31,7 +31,7 @@ export const toastVariants = cva(
         destructive:
           "destructive group border-destructive bg-destructive text-destructive-foreground",
         sucess:
-          "bg-green-500 border border-green-600 text-white px-4 py-2 rounded-md shadow-md",
+          "bg-green-600 border border-green-600 text-white px-4 py-2 rounded-md shadow-md",
         failed:
           "bg-red-500 border border-red-600 text-white px-4 py-2 rounded-md shadow-md",
       },

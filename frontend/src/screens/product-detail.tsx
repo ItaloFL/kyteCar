@@ -80,7 +80,7 @@ export function ProductDetail() {
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     const response = await api.get(`products/${id}`);
-    setProduct(response.data);
+    setProduct(response.data.product);
     setLoading(false);
   }
 

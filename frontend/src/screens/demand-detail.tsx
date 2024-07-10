@@ -49,7 +49,7 @@ export function DemandDetail() {
   async function getDemandDetails() {
     const response = await api.get(`demand/${id}`);
 
-    setDemand(response.data);
+    setDemand(response.data.demand);
   }
 
   async function handleCreateNewHistory(data: CreateHistoryType) {

@@ -131,6 +131,7 @@ export function Products() {
     );
     setLoading(true);
 
+
     await new Promise((resolve) => setTimeout(resolve, 1500));
 
     setProducts(response.data.products);
@@ -140,12 +141,13 @@ export function Products() {
 
   async function getAllBrands() {
     const response = await api.get("brand");
-    setBrands(response.data);
+ 
+    setBrands(response.data.brands);
   }
 
   async function handleSubmitCreateANewProduct(data: CreateProductType) {
     const { name, price, brand, details, yearCar, imageURL } = data;
-    console.log(imageURL);
+ 
 
     await api.post(
       "products",
