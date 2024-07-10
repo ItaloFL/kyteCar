@@ -8,6 +8,7 @@ import {
   parseISO,
 } from "date-fns";
 import { HistoryRepository } from "../../../repositories/history.repository";
+import dayjs from "dayjs";
 
 interface GetStaticsRangeDateRequest {
   initialDate: any;
@@ -31,7 +32,9 @@ export class GetStaticsRangeDateUseCase {
     finalDate,
   }: GetStaticsRangeDateRequest): Promise<GetStaticRangeDateResponse> {
     const initialDateDate = new Date(initialDate);
-    const finalDateDate = new Date(finalDate);
+
+    const InitialDate = startOfDay(initialDateDate);
+    const FinalDate = endOfDay(parseISO(finalDate));
 
     if (differenceInDays(finalDate, initialDate) > 6) {
       throw new AppError("The difference into datas does not be more than 7");
@@ -39,8 +42,8 @@ export class GetStaticsRangeDateUseCase {
 
     const productAcceptedIntoRangeData =
       await this.historyRepository.getStaticRangeDate(
-        initialDateDate,
-        finalDateDate
+        InitialDate,
+        FinalDate
       );
 
     const dailyOffers: { [date: string]: number } = {};

@@ -20,8 +20,8 @@ export class GetMonthOrdersAmountUseCase {
     const monthOrders = await this.historyRepository.getMonthOrders();
 
     const monthOrdersAmount = await this.historyRepository.getMonthOrdersAmount(
-      today,
-      periodMonth
+      periodMonth,
+      today
     );
 
     return { monthOrders, monthOrdersAmount };

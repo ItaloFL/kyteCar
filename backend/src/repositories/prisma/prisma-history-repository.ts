@@ -35,6 +35,9 @@ export class PrismaHistoryRepository implements HistoryRepository {
     const histories = await prisma.history.findMany({
       take: 10,
       skip: (pageNumber - 1) * pageNumber * 10,
+      orderBy: {
+        createdAt: "desc",
+      },
     });
 
     return histories;
@@ -47,8 +50,8 @@ export class PrismaHistoryRepository implements HistoryRepository {
   }
 
   async getMonthOrders() {
-    const initialDate = new Date();
-    const finalDate = subDays(initialDate, 30);
+    const finalDate = new Date();
+    const initialDate = subDays(finalDate, 30);
 
     const monthOrders = await prisma.history.findMany({
       where: {
@@ -109,8 +112,8 @@ export class PrismaHistoryRepository implements HistoryRepository {
       where: {
         hasAccepted: true,
         createdAt: {
-          gte: new Date(initialDate),
-          lte: new Date(finalDate),
+          gte: initialDate,
+          lte: finalDate,
         },
       },
       select: {

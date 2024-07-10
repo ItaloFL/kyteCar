@@ -65,8 +65,8 @@ export class InMemoryHistoryRepository implements HistoryRepository {
     const getMonthOrdersAmount = this.data.filter((item) => {
       const historyDate = dayjs(item.createdAt);
       const isOnRangeDate =
-        historyDate.isAfter(initialRangeDate) &&
-        historyDate.isBefore(endRangeDate);
+        historyDate.isAfter(endRangeDate) &&
+        historyDate.isBefore(initialRangeDate);
 
       return item.hasAccepted && isOnRangeDate;
     }).length;
