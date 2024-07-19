@@ -16,7 +16,7 @@ import {
 import { Button } from "../components/ui/button";
 import { DateRange } from "react-day-picker";
 import { useEffect, useState } from "react";
-import { format, startOfDay, subDays } from "date-fns";
+import { format, subDays } from "date-fns";
 import { Calendar } from "../components/ui/calendar";
 import { api } from "../lib/axios";
 import { converterData } from "../utils/convertData";
@@ -28,9 +28,13 @@ interface PeriodDataType {
   offer: number;
 }
 
-interface MonthOrdersAmountType {
+interface MonthOrdersAmountResponse {
   monthOrders: PeriodDataType[];
   monthOrdersAmount: number;
+}
+
+interface GetTodayOrdersAmountResponse {
+  totalOrdersToday: number
 }
 
 export function Statics() {
@@ -42,26 +46,27 @@ export function Statics() {
   const [periodData, setPeriodData] = useState<PeriodDataType[]>([]);
   const [todayOrdersAmount, setTodayOrdersAmount] = useState<number>();
   const [monthOrdersAmount, setMonthOrdersAmount] =
-    useState<MonthOrdersAmountType>();
+    useState<MonthOrdersAmountResponse>();
   const [error, setError] = useState<Error | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
-  console.log(error);
 
   async function handleGetStaticsDate() {
     if (date?.to && date.from) {
       const initialDate = converterData(date?.from);
       const finalDate = converterData(date?.to);
-      console.log(initialDate, finalDate)
+      
       try {
-        const response = await api.get<PeriodDataType[]>(
+        const response = await api.get(
           `statics?initialDate=${initialDate}&finalDate=${finalDate}`
         );
+        
         setLoading(true);
         await new Promise((resolve) => setTimeout(resolve, 1500));
-
-        setPeriodData(response.data);
+        
+        setPeriodData(response.data.result);
         handleGetTodayAmountOrders();
         handleGetMonthAmountOrders();
+        setError(null)
         setLoading(false);
       } catch (error: any) {
         setError(error);
@@ -82,14 +87,15 @@ export function Statics() {
   }
 
   async function handleGetTodayAmountOrders() {
-    const response = await api.get(`statics/todayorders`);
-    setTodayOrdersAmount(response.data);
+    const response = await api.get<GetTodayOrdersAmountResponse>(`statics/todayorders`);
+    setTodayOrdersAmount(response.data.totalOrdersToday);
   }
 
   async function handleGetMonthAmountOrders() {
-    const response = await api.get<MonthOrdersAmountType>(
+    const response = await api.get<MonthOrdersAmountResponse>(
       `statics/monthamount`
     );
+  
     setMonthOrdersAmount(response.data);
   }
 
