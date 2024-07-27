@@ -39,7 +39,6 @@ import {
 import { ProductSkeleton } from "../components/skeletons/products-skeleton";
 import { useToast } from "../components/ui/use-toast";
 import { ToastAction } from "../components/ui/toast";
-import { fi } from "date-fns/locale";
 
 interface Product {
   id: string;
@@ -99,6 +98,10 @@ interface listSearchProductsResponse {
   totalSearchProducts: number;
 }
 
+interface listAllBrandsReponse {
+  brands: Brand[]
+}
+
 type CreateProductType = z.infer<typeof createProductType>;
 
 export function Products() {
@@ -123,8 +126,6 @@ export function Products() {
     resolver: zodResolver(createProductType),
   });
 
-  console.log(errors);
-
   async function getAllProducts() {
     const response = await api.get<listProductsResponse>(
       `products?page=${page}`
@@ -140,9 +141,9 @@ export function Products() {
   }
 
   async function getAllBrands() {
-    const response = await api.get("brand");
+    const response = await api.get<listAllBrandsReponse>("brand");
  
-    setBrands(response.data.brands);
+    setBrands(response.data.brands)
   }
 
   async function handleSubmitCreateANewProduct(data: CreateProductType) {
@@ -399,15 +400,15 @@ export function Products() {
             </Dialog>
           </div>
         </div>
-        <div className="flex flex-col gap-7 justify-center items-center ">
+        <div className="flex flex-col gap-7 justify-center items-center">
           {loading ? (
-            <div className="flex flex-wrap justify-center gap-6 gap-y-16 min-h-[465px]">
+            <div className="flex flex-wrap justify-center gap-6 gap-y-16 min-h-[565px]">
               {[...Array(10)].map((_, index) => (
                 <ProductSkeleton key={index} />
               ))}
             </div>
           ) : (
-            <div className="flex flex-wrap justify-center gap-6 gap-y-16 min-h-[465px]">
+            <div className="flex flex-wrap justify-center gap-6 gap-y-16 min-h-[565px]">
               {products.map((product: Product) => {
                 return (
                   <div
